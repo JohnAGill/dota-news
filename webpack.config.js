@@ -14,9 +14,9 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        loaders: ['react-hot', 'babel']
       },
       {
         test: /\.scss$/,
@@ -28,7 +28,10 @@ module.exports = {
       {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'}
     ]
   },
-
+  resolve: {
+    // you can now require('file') instead of require('file.coffee')
+    extensions: ['', '.js', '.jsx', '.json']
+  },
   plugins: [
     new CopyWebpackPlugin([
         // Directory  examples
