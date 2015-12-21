@@ -5,7 +5,7 @@ var Clean = require('clean-webpack-plugin');
 module.exports = {
   entry: [
 
-    path.resolve(__dirname, 'src/scripts/main.js')
+    path.resolve(__dirname, 'src/scripts/main.jsx')
   ],
   output: {
       path: path.resolve(__dirname, 'build'),
