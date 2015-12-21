@@ -13,19 +13,15 @@ module.exports = {
   },
   module: {
     loaders: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        loaders: ['react-hot', 'babel']
-      },
-      {
-        test: /\.scss$/,
-        loader: 'style!css!sass'
-      },
+      {test: /\.(js|jsx)$/, exclude: /node_modules/, loaders: ['react-hot', 'babel']},
+      {test: /\.scss$/, loader: 'style!css!sass'},
       {test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff'},
       {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
       {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
       {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'}
+    ],
+    preLoaders: [
+      {test: /\.(js|jsx)$/, exclude: /node_modules/, loaders: ['eslint-loader']}
     ]
   },
   resolve: {
@@ -39,5 +35,8 @@ module.exports = {
         { from: 'src/images', to: './images' },
     ]),
     new Clean(['build'])
-  ]
+  ],
+  eslint: {
+    configFile: './.eslintrc'
+  }
 };

@@ -1,12 +1,11 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import Firebase from 'firebase'
-const ref = new Firebase("https://toptal-project.firebaseio.com");
+const ref = new Firebase('https://toptal-project.firebaseio.com')
 import actions from './actions'
 import {connect} from 'react-redux'
 
 @connect((state) => state, actions)
 export default class Login extends Component {
-
 
   emailInput(event) {
     this.setState(
@@ -26,17 +25,16 @@ export default class Login extends Component {
 
   handleClick(event) {
     ref.createUser({
-      email    : this.state.email,
-      password : this.state.password
-    }, function(error, userData) {
+      email: this.state.email,
+      password: this.state.password
+    }, (error, userData) => {
       if (error) {
-        console.log("Error creating user:", error);
+        console.log('Error creating user:', error)
       } else {
-        console.log("Successfully created user account with uid:", userData.uid);
+        console.log('Successfully created user account with uid:', userData.uid)
       }
     })
   }
-
 
   render() {
     return(
