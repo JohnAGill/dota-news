@@ -1,13 +1,15 @@
 {
-  "name": "ZDEV-Website",
+  "name": "Toptal-Project",
   "version": "0.0.1",
   "description": "",
   "dependencies": {
     "bootstrap-sass": "^3.3.5",
+    "firebase": "^2.3.2",
     "ionicons-pre": "^1.0.0-pre",
     "jquery": "^2.1.4",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
+    "redux": "^3.0.5",
     "smooth-scroll": "cferdinandi/smooth-scroll#v7.1.1"
   },
   "devDependencies": {
