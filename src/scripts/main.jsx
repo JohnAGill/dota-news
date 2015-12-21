@@ -8,6 +8,6 @@ const React = require('react')
 const ReactDOM = require('react-dom')
 const App = require('./components/app')
 import { Provider } from 'react-redux'
-import store from './reducers/root'
+import store from './reducers/store'
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('content'));
