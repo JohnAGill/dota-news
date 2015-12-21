@@ -1,4 +1,5 @@
-import {Component} from 'react'
+import React, {Component} from 'react' // eslint-disable-line no-unused-vars
+
 import Firebase from 'firebase'
 const ref = new Firebase('https://toptal-project.firebaseio.com')
 import actions from './actions'

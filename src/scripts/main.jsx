@@ -4,6 +4,7 @@ import '../styles/main.scss'
 // Import bootstrap (which requires jQuery)
 import 'imports?jQuery=jquery!bootstrap-sass'
 
+import React from 'react' // eslint-disable-line no-unused-vars
 import ReactDOM from 'react-dom'
 import App from './components/app'
 import { Provider } from 'react-redux'
