@@ -1,50 +1,37 @@
 import React, {Component} from 'react' // eslint-disable-line no-unused-vars
 
-import Firebase from 'firebase'
-const ref = new Firebase('https://toptal-project.firebaseio.com')
 import actions from './actions'
 import {connect} from 'react-redux'
 
-@connect((state) => state, actions)
+@connect((state) => state.users, actions)
 export default class Login extends Component {
 
   emailInput(event) {
-    this.setState(
-      {
-        email: event.target.value,
-      }
-    )
+    this.props.updateEmail(event.target.value)
   }
 
   passwordInput(event) {
-    this.setState(
-      {
-        password: event.target.value,
-      }
-    )
+    this.props.updatePassword(event.target.value)
   }
 
   handleClick(event) {
-    ref.createUser({
-      email: this.state.email,
-      password: this.state.password
-    }, (error, userData) => {
-      if (error) {
-        console.log('Error creating user:', error)
-      } else {
-        console.log('Successfully created user account with uid:', userData.uid)
-      }
-    })
+    this.props.signUp()
   }
 
   render() {
+    if (this.props.loading) {
+      return(<p>Loading!</p>)
+    } else if (this.props.loggedIn) {
+      return(<p>Logged In!</p>)
+    }
     return(
       <div>
         <h3>Email</h3>
-        <input onChange={this.emailInput} className='email-input'></input>
+        <input onChange={(e) => this.emailInput(e)} className='email-input' value={this.props.email}></input>
         <h3>Password</h3>
-        <input onChange={this.passwordInput} type='password' className='password-input'></input>
+        <input onChange={(e) => this.passwordInput(e)} type='password' className='password-input'></input>
         <button onClick={(e) => this.handleClick(e)} className='btn btn-primary'>Sign Up</button>
+        {this.props.errorMessage ? <p>{this.props.errorMessage}</p> : null}
       </div>
     )
   }
