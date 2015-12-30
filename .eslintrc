@@ -1,7 +1,8 @@
 {
   "parser": "babel-eslint",
-  "extends": ["@jokeyrhyme/es2015"],
+  "extends": ["@jokeyrhyme/es2015", "import/warnings"],
   "ecmaFeatures": {
+    "jsx": true
   },
 
   "env": {
@@ -9,7 +10,19 @@
 
   "globals": {},
 
+  "plugins": [
+    "import",
+    "react"
+  ],
+
   "rules": {
-    semi: [2, "never"]
+
+    comma-dangle: [0, "never"],
+    import/no-unresolved: [0],
+    import/no-require: [2],
+    no-console: [1],
+    semi: [2, "never"],
+    space-before-function-paren: [2, "never"],
+    space-return-throw-case: [0]
   }
 }
