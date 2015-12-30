@@ -9,5 +9,13 @@ import ReactDOM from 'react-dom'
 import App from './components/app'
 import { Provider } from 'react-redux'
 import store from './reducers/store'
+import { Router, Route } from 'react-router'
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('content'))
+
+ReactDOM.render((
+  <Router>
+    <Route path="/" component={App}>
+    </Route>
+  </Router>
+), document.body)
