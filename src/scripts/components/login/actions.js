@@ -1,3 +1,4 @@
+import editData from '../../firebase'
 import Firebase from 'firebase'
 const ref = new Firebase('https://toptal-project.firebaseio.com')
 
@@ -16,6 +17,7 @@ export default {
             if (loginError) {
               dispatch({type: 'LOG_IN_FAILURE', payload: loginError})
             } else {
+              editData()
               dispatch({type: 'LOG_IN_SUCCESS', payload: authData})
             }
           })
