@@ -1,4 +1,4 @@
-import Firebase from 'firebase'
+/*import Firebase from 'firebase'
 const ref = new Firebase('https://toptal-project.firebaseio.com')
 
 export default {
@@ -37,3 +37,4 @@ export default {
     }
   }
 }
+*/

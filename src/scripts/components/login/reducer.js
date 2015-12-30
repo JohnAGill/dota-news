@@ -1,4 +1,4 @@
-const initialState = {loading: false, errorMessage: null, loggedIn: null}
+/*const initialState = {loading: false, errorMessage: null, loggedIn: null}
 
 export default function users(state = initialState, action) {
   switch (action.type) {
@@ -20,3 +20,4 @@ export default function users(state = initialState, action) {
       return state
   }
 }
+*/
