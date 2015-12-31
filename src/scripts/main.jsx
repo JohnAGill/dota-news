@@ -8,13 +8,11 @@ import React from 'react' // eslint-disable-line no-unused-vars
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import createBrowserHistory from 'history/lib/createBrowserHistory'
-import { Router, Route } from 'react-router'
+import { Router } from 'react-router'
 import { syncReduxAndRouter } from 'redux-simple-router'
 
 import store from './redux/store'
-import App from './components/app'
-import Home from './components/Home/home'
-import Login from './components/login/login'
+import routes from './routes'
 
 // There are different types of history: https://github.com/rackt/react-router/blob/master/docs/guides/basics/Histories.md
 const history = createBrowserHistory()
@@ -23,12 +21,7 @@ syncReduxAndRouter(history, store, (state) => state.router)
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={App}>
-        <Route path="home" component={Home} />
-        <Route path="signin" component={Login} />
-      </Route>
-    </Router>
+    <Router history={history} routes={routes} />
   </Provider>,
   document.getElementById('content')
 )

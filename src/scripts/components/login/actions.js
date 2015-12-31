@@ -18,7 +18,7 @@ export default {
             if (loginError) {
               dispatch({type: 'LOG_IN_FAILURE', payload: loginError})
             } else {
-              dispatch(pushPath('/home'))
+              dispatch(pushPath('/'))
             }
           })
         }
