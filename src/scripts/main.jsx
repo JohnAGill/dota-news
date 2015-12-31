@@ -6,18 +6,29 @@ import 'imports?jQuery=jquery!bootstrap-sass'
 
 import React from 'react' // eslint-disable-line no-unused-vars
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import createBrowserHistory from 'history/lib/createBrowserHistory'
+import { Router, Route } from 'react-router'
+import { syncReduxAndRouter } from 'redux-simple-router'
+
+import store from './redux/store'
 import App from './components/app'
 import Home from './components/Home/home'
 import Login from './components/login/login'
 
-// import { Provider } from 'react-redux'
-/* import store from './reducers/store'*/
-import { Router, Route, IndexRoute } from 'react-router'
+// There are different types of history: https://github.com/rackt/react-router/blob/master/docs/guides/basics/Histories.md
+const history = createBrowserHistory()
 
-ReactDOM.render(<Router>
-                  <Route path="/" component={App}>
-                    <IndexRoute component={Home}/>
-                    <Route path="/" component={Home} />
-                    <Route path="signin" component={Login} />
-                  </Route>
-                </Router>, document.getElementById('content'))
+syncReduxAndRouter(history, store, (state) => state.router)
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Router history={history}>
+      <Route path="/" component={App}>
+        <Route path="home" component={Home} />
+        <Route path="signin" component={Login} />
+      </Route>
+    </Router>
+  </Provider>,
+  document.getElementById('content')
+)
