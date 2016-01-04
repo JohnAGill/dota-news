@@ -1,3 +1,4 @@
+import editData from '../../firebaseAddUser'
 import Firebase from 'firebase'
 import { pushPath } from 'redux-simple-router'
 
@@ -19,6 +20,7 @@ export default {
               dispatch({type: 'LOG_IN_FAILURE', payload: loginError})
             } else {
               dispatch(pushPath('/'))
+
             }
           })
         }
