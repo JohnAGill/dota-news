@@ -8,8 +8,8 @@ module.exports = {
     path.resolve(__dirname, 'src/scripts/main.jsx')
   ],
   output: {
-      path: path.resolve(__dirname, 'build'),
-      filename: 'bundle.js',
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js'
   },
   module: {
     loaders: [

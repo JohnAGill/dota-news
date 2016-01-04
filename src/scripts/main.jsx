@@ -6,8 +6,22 @@ import 'imports?jQuery=jquery!bootstrap-sass'
 
 import React from 'react' // eslint-disable-line no-unused-vars
 import ReactDOM from 'react-dom'
-import App from './components/app'
 import { Provider } from 'react-redux'
-import store from './reducers/store'
+import createBrowserHistory from 'history/lib/createBrowserHistory'
+import { Router } from 'react-router'
+import { syncReduxAndRouter } from 'redux-simple-router'
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('content'))
+import store from './redux/store'
+import routes from './routes'
+
+// There are different types of history: https://github.com/rackt/react-router/blob/master/docs/guides/basics/Histories.md
+const history = createBrowserHistory()
+
+syncReduxAndRouter(history, store, (state) => state.router)
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Router history={history} routes={routes} />
+  </Provider>,
+  document.getElementById('content')
+)
