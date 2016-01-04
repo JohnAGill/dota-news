@@ -1,9 +1,11 @@
 
 import { combineReducers } from 'redux'
 import users from '../components/login/reducer'
+import jogs from '../components/jogs/reducer'
 
 const rootReducer = combineReducers({
-  users
+  users,
+  jogs
 })
 
 export default rootReducer

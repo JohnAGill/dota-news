@@ -20,7 +20,7 @@
     comma-dangle: [0, "never"],
     import/no-unresolved: [0],
     import/no-require: [2],
-    no-console: [1],
+    no-console: [0],
     semi: [2, "never"],
     space-before-function-paren: [2, "never"],
     space-return-throw-case: [0]
