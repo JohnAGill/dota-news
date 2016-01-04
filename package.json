@@ -5,13 +5,16 @@
   "dependencies": {
     "bootstrap-sass": "^3.3.5",
     "firebase": "^2.3.2",
+    "history": "^1.17.0",
     "ionicons-pre": "^1.0.0-pre",
     "jquery": "^2.1.4",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.2",
+    "react-router": "^1.0.3",
     "redux": "^3.0.5",
     "redux-logger": "^2.3.1",
+    "redux-simple-router": "^1.0.2",
     "redux-thunk": "^1.0.2",
     "smooth-scroll": "cferdinandi/smooth-scroll#v7.1.1"
   },
@@ -51,7 +54,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server --devtool sourcemaps --progress --colors --hot --inline --content-base build",
+    "dev": "webpack-dev-server --devtool sourcemaps --progress --colors --hot --inline --history-api-fallback --content-base build",
     "fix_js": "eslint --fix src/scripts",
     "lint_html": "htmllint build/**/*.html",
     "lint_js": "eslint src/scripts",
