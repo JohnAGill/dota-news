@@ -1,5 +1,7 @@
 import editData from '../../firebaseAddUser'
 import Firebase from 'firebase'
+import { pushPath } from 'redux-simple-router'
+
 const ref = new Firebase('https://toptal-project.firebaseio.com')
 
 export default {
@@ -17,8 +19,8 @@ export default {
             if (loginError) {
               dispatch({type: 'LOG_IN_FAILURE', payload: loginError})
             } else {
-              editData(authData.uid, authData.password.email, authData.provider)
-              dispatch({type: 'LOG_IN_SUCCESS', payload: authData})
+              dispatch(pushPath('/'))
+
             }
           })
         }
@@ -39,3 +41,4 @@ export default {
     }
   }
 }
+
