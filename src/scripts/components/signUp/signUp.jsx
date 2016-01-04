@@ -15,12 +15,14 @@ export default class SignUp extends Component {
   }
 
   handleClick(event) {
-    this.props.logIn()
+    this.props.signUp()
   }
 
   render() {
     if (this.props.loading) {
       return(<p>Loading!</p>)
+    } else if (this.props.loggedIn) {
+      return(<p>Logged In!</p>)
     }
     return(
       <div>
@@ -28,7 +30,7 @@ export default class SignUp extends Component {
         <input onChange={(e) => this.emailInput(e)} className='email-input' value={this.props.email}></input>
         <h3>Password</h3>
         <input onChange={(e) => this.passwordInput(e)} type='password' className='password-input'></input>
-        <button onClick={(e) => this.handleClick(e)} className='btn btn-primary'>Log In</button>
+        <button onClick={(e) => this.handleClick(e)} className='btn btn-primary'>Sign Up</button>
         {this.props.errorMessage ? <p>{this.props.errorMessage}</p> : null}
       </div>
     )

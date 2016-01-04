@@ -4,21 +4,27 @@ import { pushPath } from 'redux-simple-router'
 const ref = new Firebase('https://toptal-project.firebaseio.com')
 
 export default {
-  logIn() {
+  signUp() {
     return (dispatch, getState) => {
       const userInfo = {
         email: getState().users.email,
         password: getState().users.password
       }
-      ref.authWithPassword(userInfo, (loginError, authData) => {
-        if (loginError) {
-          dispatch({type: 'LOG_IN_FAILURE', payload: loginError})
+      ref.createUser(userInfo, (signupError, userData) => {
+        if (signupError) {
+          dispatch({type: 'SIGN_UP_ERROR', payload: signupError})
         } else {
-          dispatch({type: 'LOG_IN_SUCCESS', payload: authData})
-          dispatch(pushPath('jogs'))
+          ref.authWithPassword(userInfo, (loginError, authData) => {
+            if (loginError) {
+              dispatch({type: 'LOG_IN_FAILURE', payload: loginError})
+            } else {
+              dispatch({type: 'LOG_IN_SUCCESS', payload: authData})
+              dispatch(pushPath('jogs'))
+            }
+          })
         }
       })
-      dispatch({type: 'LOG_IN_REQUEST'})
+      dispatch({type: 'SIGN_UP_REQUEST'})
     }
   },
   updateEmail(email) {
@@ -34,3 +40,4 @@ export default {
     }
   }
 }
+

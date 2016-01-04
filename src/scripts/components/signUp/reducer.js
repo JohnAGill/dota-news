@@ -1,9 +1,13 @@
 const initialState = {loading: false, errorMessage: null, loggedIn: null}
 
-export default function logIn(state = initialState, action) {
+export default function users(state = initialState, action) {
   switch (action.type) {
-    case 'LOG_IN_REQUEST':
+    case 'SIGN_UP_REQUEST':
       return {...state, loading: true, errorMessage: null}
+    case 'SIGN_UP_ERROR':
+      return {...state, loading: false, errorMessage: action.payload.message}
+    case 'SIGN_UP_SUCCESS':
+      return {...state, loading: false, errorMessage: null}
     case 'LOG_IN_SUCCESS':
       return {...state, loading: false, errorMessage: null, loggedIn: action.payload.auth.uid}
     case 'LOG_IN_FAILURE':
