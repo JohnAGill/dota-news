@@ -1,4 +1,4 @@
-import editData from '../../firebase'
+import editData from '../../firebaseAddUser'
 import Firebase from 'firebase'
 const ref = new Firebase('https://toptal-project.firebaseio.com')
 
@@ -17,7 +17,7 @@ export default {
             if (loginError) {
               dispatch({type: 'LOG_IN_FAILURE', payload: loginError})
             } else {
-              editData()
+              editData(authData.uid, authData.password.email, authData.provider)
               dispatch({type: 'LOG_IN_SUCCESS', payload: authData})
             }
           })
