@@ -1,13 +1,13 @@
 
 import { combineReducers } from 'redux'
 import { routeReducer as router } from 'redux-simple-router'
-import jogs from '../components/jogs/reducer'
+import trips from './reducers/trips'
 import users from './reducers/users'
 
 const rootReducer = combineReducers({
   users,
   router,
-  jogs
+  trips
 })
 
 export default rootReducer

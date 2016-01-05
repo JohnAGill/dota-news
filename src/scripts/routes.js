@@ -2,7 +2,7 @@ import App from './components/app'
 import Home from './components/Home/home'
 import SignUp from './components/signUp/signUp'
 import Login from './components/login/login'
-import Jogs from './components/jogs/jogs'
+import Trips from './components/trips/trips'
 
 export default {
   path: '/',
@@ -11,6 +11,6 @@ export default {
   childRoutes: [
     { path: 'signup', component: SignUp },
     { path: 'login', component: Login },
-    { path: 'jogs', component: Jogs }
+    { path: 'trips', component: Trips }
   ]
 }
