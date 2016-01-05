@@ -39,7 +39,7 @@ export default class Trips extends Component {
           <p className='col-md-1'>Comment</p>
           <input onChange={(e) => this.comment(e)} className='col-md-2' value={this.props.comment} />
         </div>
-        <button onClick={(e) => this.addTrip(e)} className="btn btn-primary rofl">Add</button>
+        <button onClick={(e) => this.addTrip(e)} className='btn btn-primary'>Add</button>
         {this.props.saved ? <p>Saved {this.props.newTrip.destination}</p> : null}
       </div>
     )
