@@ -1,5 +1,4 @@
 import Firebase from 'firebase'
-// import { pushPath } from 'redux-simple-router'
 
 const ref = new Firebase('https://toptal-project.firebaseio.com')
 
@@ -12,31 +11,37 @@ export default {
         startDate: getState().trips.startDate,
         endDate: getState().trips.endDate,
         comment: getState().trips.comment
+      }, (error) => {
+        if (error) {
+          dispatch({type: 'TRIP_ADDED_ERROR', payload: error})
+        } else {
+          dispatch({type: 'TRIP_ADDED_SUCCESS'})
+        }
       })
-      dispatch({type: 'ADDED_TRIP'})
+      dispatch({type: 'TRIP_ADDED_REQUEST'})
     }
   },
   updateDestination(destination) {
     return {
-      type: 'UPDATE_DESTINATION',
+      type: 'TRIP_UPDATE_DESTINATION',
       payload: destination
     }
   },
   updateStartDate(startDate) {
     return {
-      type: 'UPDATE_START_DATE',
+      type: 'TRIP_UPDATE_START_DATE',
       payload: startDate
     }
   },
   updateEndDate(endDate) {
     return {
-      type: 'UPDATE_END_DATE',
+      type: 'TRIP_UPDATE_END_DATE',
       payload: endDate
     }
   },
   updateComment(comment) {
     return {
-      type: 'UPDATE_COMMENT',
+      type: 'TRIP_UPDATE_COMMENT',
       payload: comment
     }
   }
