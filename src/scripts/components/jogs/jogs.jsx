@@ -6,10 +6,10 @@ import {connect} from 'react-redux'
 @connect((state) => state.users, actions)
 export default class Jogs extends Component {
 
-
   render() {
     return(
       <div>
+        <p>yoyoyoyo</p>
       </div>
     )
   }
