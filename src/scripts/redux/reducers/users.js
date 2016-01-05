@@ -8,6 +8,8 @@ export default function users(state = initialState, action) {
       return {...state, loading: false, errorMessage: action.payload.message}
     case 'SIGN_UP_SUCCESS':
       return {...state, loading: false, errorMessage: null}
+    case 'LOG_IN_REQUEST':
+      return {...state, loading: true, errorMessage: null}
     case 'LOG_IN_SUCCESS':
       return {...state, loading: false, errorMessage: null, loggedIn: action.payload.auth.uid}
     case 'LOG_IN_FAILURE':
