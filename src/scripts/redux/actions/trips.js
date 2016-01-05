@@ -6,7 +6,7 @@ export default {
   addTrip() {
     return (dispatch, getState) => {
       const pushTrip = ref.child('Trips')
-      const trip = getState().trips
+      const trip = getState().trips.newTrip
       pushTrip.push({
         destination: trip.destination,
         startDate: trip.startDate,
