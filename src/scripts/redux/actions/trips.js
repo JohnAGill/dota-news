@@ -53,8 +53,9 @@ export default {
         const trips = (snapshot.val())
         dispatch({type: 'TRIP_LOAD_SUCCESS', payload: _.map(trips.trips, (trip, uid) => ({...trip, uid: uid}))})
       }, (errorObject) => {
-        console.log(`The read failed: ${errorObject.code}`)
+        dispatch({type: 'TRIP_LOAD_ERROR', payload: errorObject.code})
       })
+      dispatch({type: 'TRIP_LOAD_REQUEST'})
     }
   }
 }

@@ -60,6 +60,7 @@ export default class Trips extends Component {
               )
             )
           }
+          {this.props.error ? <p>Error loading trips</p> : null}
         </div>
       </div>
     )

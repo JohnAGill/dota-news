@@ -1,4 +1,4 @@
-const initialState = {newTrip: {}, saved: false}
+const initialState = {newTrip: {}, saved: false, error: false}
 
 export default function trips(state = initialState, action) {
   switch (action.type) {
@@ -17,7 +17,11 @@ export default function trips(state = initialState, action) {
     case 'TRIP_ADDED_SUCCESS':
       return {...state, newTrip: {}, saved: true}
     case 'TRIP_LOAD_SUCCESS':
-      return {...state, trips: action.payload}
+      return {...state, trips: action.payload, error: false}
+    case 'TRIP_LOAD_ERROR':
+      return {...state, trips: {}, error: true}
+    case 'TRIP_LOAD_REQUEST':
+      return {...state, error: false}
     default:
       return state
   }
