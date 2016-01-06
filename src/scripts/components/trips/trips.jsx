@@ -26,6 +26,10 @@ export default class Trips extends Component {
     this.props.addTrip()
   }
 
+  deleteTrip(trip) {
+    this.props.deleteTrip(trip)
+  }
+
   componentWillMount() {
     this.props.getTrips()
   }
@@ -51,12 +55,15 @@ export default class Trips extends Component {
           {
             _.map(this.props.trips, (trip) =>
               (
-                <ul className='list-padding'>
-                  <li>Destination: {trip.destination}</li>
-                  <li>Start Date: {trip.startDate}</li>
-                  <li>End Date: {trip.endDate}</li>
-                  <li>Comment: {trip.comment}</li>
-                </ul>
+                <div className='container'>
+                  <ul className='list-padding'>
+                    <li>Destination: {trip.destination}</li>
+                    <li>Start Date: {trip.startDate}</li>
+                    <li>End Date: {trip.endDate}</li>
+                    <li>Comment: {trip.comment}</li>
+                  </ul>
+                  <button onClick={() => this.deleteTrip(trip)} className='btn btn-primary delete-margin'>Delete</button>
+                </div>
               )
             )
           }
