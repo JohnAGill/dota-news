@@ -8,6 +8,7 @@
     "history": "^1.17.0",
     "ionicons-pre": "^1.0.0-pre",
     "jquery": "^2.1.4",
+    "lodash": "^3.10.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.2",
