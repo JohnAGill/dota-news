@@ -25,27 +25,18 @@ export default {
   },
   updateDestination(destination) {
     return {
-      type: 'TRIP_UPDATE_DESTINATION',
-      payload: destination
-    }
+      type: 'TRIP_UPDATE_DESTINATION', payload: destination}
   },
   updateStartDate(startDate) {
     return {
-      type: 'TRIP_UPDATE_START_DATE',
-      payload: startDate
-    }
+      type: 'TRIP_UPDATE_START_DATE', payload: startDate}
   },
   updateEndDate(endDate) {
     return {
-      type: 'TRIP_UPDATE_END_DATE',
-      payload: endDate
-    }
+      type: 'TRIP_UPDATE_END_DATE', payload: endDate}
   },
   updateComment(comment) {
-    return {
-      type: 'TRIP_UPDATE_COMMENT',
-      payload: comment
-    }
+    return {type: 'TRIP_UPDATE_COMMENT', payload: comment}
   },
   getTrips() {
     return (dispatch) => {
@@ -56,6 +47,18 @@ export default {
         dispatch({type: 'TRIP_LOAD_ERROR', payload: errorObject.code})
       })
       dispatch({type: 'TRIP_LOAD_REQUEST'})
+    }
+  },
+  deleteTrip(pickedTrip) {
+    return (dispatch, getState) => {
+      ref.child('trips').child(pickedTrip.uid).remove((error) => {
+        if (error) {
+          dispatch({type: 'TRIP_DELETED_ERROR', payload: error})
+        } else {
+          dispatch({type: 'TRIP_DELETED_SUCCESS', payload: pickedTrip})
+        }
+      })
+      dispatch({type: 'TRIP_DELETE_REQUEST'})
     }
   }
 }
