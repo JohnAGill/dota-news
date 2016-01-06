@@ -1,11 +1,12 @@
 import Firebase from 'firebase'
+import _ from 'lodash'
 
 const ref = new Firebase('https://toptal-project.firebaseio.com')
 
 export default {
   addTrip() {
     return (dispatch, getState) => {
-      const pushTrip = ref.child('Trips')
+      const pushTrip = ref.child('trips')
       const trip = getState().trips.newTrip
       pushTrip.push({
         destination: trip.destination,
@@ -44,6 +45,16 @@ export default {
     return {
       type: 'TRIP_UPDATE_COMMENT',
       payload: comment
+    }
+  },
+  getTrips() {
+    return (dispatch) => {
+      ref.on('value', (snapshot) => {
+        const trips = (snapshot.val())
+        dispatch({type: 'TRIP_LOAD_SUCCESS', payload: _.map(trips.trips, (trip, uid) => ({...trip, uid: uid}))})
+      }, (errorObject) => {
+        console.log(`The read failed: ${errorObject.code}`)
+      })
     }
   }
 }

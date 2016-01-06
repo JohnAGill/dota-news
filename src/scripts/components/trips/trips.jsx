@@ -1,5 +1,5 @@
 import React, {Component} from 'react' // eslint-disable-line no-unused-vars
-
+import _ from 'lodash'
 import actions from '../../redux/actions/trips'
 import {connect} from 'react-redux'
 
@@ -26,21 +26,41 @@ export default class Trips extends Component {
     this.props.addTrip()
   }
 
+  componentWillMount() {
+    this.props.getTrips()
+  }
+
   render() {
     return(
-      <div className='container'>
-        <div className='row input-padding'>
-          <p className='col-md-1'>Destination</p>
-          <input onChange={(e) => this.destination(e)} className='col-md-2' value={this.props.destination} />
-          <p className='col-md-1'>StartDate</p>
-          <input onChange={(e) => this.startDate(e)} className='col-md-2' value={this.props.startDate} />
-          <p className='col-md-1'>EndDate</p>
-          <input onChange={(e) => this.endDate(e)} className='col-md-2' value={this.props.endDate} />
-          <p className='col-md-1'>Comment</p>
-          <input onChange={(e) => this.comment(e)} className='col-md-2' value={this.props.comment} />
+      <div>
+        <div className='container'>
+          <div className='row input-padding'>
+            <p className='col-md-1'>Destination</p>
+            <input onChange={(e) => this.destination(e)} className='col-md-2' value={this.props.newTrip.destination} />
+            <p className='col-md-1'>StartDate</p>
+            <input onChange={(e) => this.startDate(e)} className='col-md-2' value={this.props.newTrip.startDate} />
+            <p className='col-md-1'>EndDate</p>
+            <input onChange={(e) => this.endDate(e)} className='col-md-2' value={this.props.newTrip.endDate} />
+            <p className='col-md-1'>Comment</p>
+            <input onChange={(e) => this.comment(e)} className='col-md-2' value={this.props.newTrip.comment} />
+          </div>
+          <button onClick={(e) => this.addTrip(e)} className='btn btn-primary'>Add</button>
+          {this.props.saved ? <p>Saved {this.props.newTrip.destination}</p> : null}
         </div>
-        <button onClick={(e) => this.addTrip(e)} className='btn btn-primary'>Add</button>
-        {this.props.saved ? <p>Saved {this.props.newTrip.destination}</p> : null}
+        <div>
+          {
+            _.map(this.props.trips, (trip) =>
+              (
+                <ul className='list-padding'>
+                  <li>Destination: {trip.destination}</li>
+                  <li>Start Date: {trip.startDate}</li>
+                  <li>End Date: {trip.endDate}</li>
+                  <li>Comment: {trip.comment}</li>
+                </ul>
+              )
+            )
+          }
+        </div>
       </div>
     )
   }
