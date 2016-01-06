@@ -1,4 +1,4 @@
-const initialState = {newTrip: {}, saved: false, error: false}
+const initialState = {newTrip: {}, saved: false, error: false, trips: []}
 
 export default function trips(state = initialState, action) {
   switch (action.type) {
