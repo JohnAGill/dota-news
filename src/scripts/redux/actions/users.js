@@ -13,7 +13,7 @@ const logOn = (dispatch, getState) => {
       dispatch({type: 'LOG_IN_FAILURE', payload: loginError})
     } else {
       dispatch({type: 'LOG_IN_SUCCESS', payload: authData})
-      dispatch(pushPath('jogs'))
+      dispatch(pushPath('trips'))
     }
   })
 }
