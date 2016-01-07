@@ -8,7 +8,7 @@ export default {
   getTrips() {
     return (dispatch) => {
       ref.on('value', (snapshot) => {
-        const trips = (snapshot.val()) ? snapshot.val().trips : null
+        const trips = (snapshot.val()) ? snapshot.val().trips : []
         dispatch({type: 'TRIP_LOAD_SUCCESS', payload: _.map(trips, (trip, uid) => ({...trip, uid: uid}))})
       }, (errorObject) => {
         dispatch({type: 'TRIP_LOAD_ERROR', payload: errorObject.code})
