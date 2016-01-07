@@ -18,11 +18,11 @@ export default class EditTrip extends Component {
     return(
       <div className='container'>
         <TripCreator trip={this.props.trip}
-        updateDestination={this.props.updateDestination}
-        updateStartDate={this.props.updateStartDate}
-        updateEndDate={this.props.updateEndDate}
-        updateComment={this.props.updateComment}
-        destination={this.props.destination}/>
+          updateDestination={this.props.updateDestination}
+          updateStartDate={this.props.updateStartDate}
+          updateEndDate={this.props.updateEndDate}
+          updateComment={this.props.updateComment}
+          destination={this.props.destination}/>
         <button onClick={(e) => this.updateTrip(e)} className='btn btn-primary'>Update</button>
         <a className='btn btn-primary' href='#/trips' role='button'>cancel</a>
       </div>

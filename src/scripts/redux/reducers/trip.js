@@ -17,11 +17,11 @@ export default function createTrip(state = initialState, action) {
     case 'TRIP_UPDATE_COMMENT':
       return {...state, trip: {...state.trip, comment: action.payload}}
     case 'GET_TRIP':
-      return {...state, trip: {destination: action.payload.destination, startDate: action.payload.startDate, endDate: action.payload.endDate, comment: action.payload.comment}}
+      return {...state, trip: action.payload}
     case 'UPDATE_TRIP_ERROR':
       return {...state, error: action.payload}
     case 'UPDATE_TRIP_SUCCESS':
-      return {...state, trip: {destination: action.payload.destination, startDate: action.payload.startDate, endDate: action.payload.endDate, comment: action.payload.comment}}
+      return {...state, trip: action.payload}
     case 'UPDATE_TRIP_REQUEST':
       return state
     default:
