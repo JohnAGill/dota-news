@@ -25,6 +25,7 @@ export default {
         email: getState().users.email,
         password: getState().users.password
       }
+      dispatch({type: 'SIGN_UP_REQUEST'})
       ref.createUser(userInfo, (signupError, userData) => {
         if (signupError) {
           dispatch({type: 'SIGN_UP_ERROR', payload: signupError})
@@ -32,7 +33,6 @@ export default {
           logOn(dispatch, getState)
         }
       })
-      dispatch({type: 'SIGN_UP_REQUEST'})
     }
   },
   logIn() {

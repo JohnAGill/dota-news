@@ -15,8 +15,11 @@ export default class Trips extends Component {
   }
 
   render() {
+    if (this.props.loading) {
+      return (<i className='spinner'></i>)
+    }
     return(
-      <div>
+      <div className='container'>
         <a className="btn btn-primary" href="#/trips/new" role="button">Add new trip</a>
         <button onClick={window.print} className='btn btn-primary delete-margin'>Print</button>
         <div>

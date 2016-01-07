@@ -7,17 +7,18 @@ const ref = new Firebase('https://toptal-project.firebaseio.com')
 export default {
   getTrips() {
     return (dispatch) => {
+      dispatch({type: 'TRIPS_LOAD_REQUEST'})
       ref.on('value', (snapshot) => {
         const trips = (snapshot.val()) ? snapshot.val().trips : []
-        dispatch({type: 'TRIP_LOAD_SUCCESS', payload: _.map(trips, (trip, uid) => ({...trip, uid: uid}))})
+        dispatch({type: 'TRIPS_LOAD_SUCCESS', payload: _.map(trips, (trip, uid) => ({...trip, uid: uid}))})
       }, (errorObject) => {
-        dispatch({type: 'TRIP_LOAD_ERROR', payload: errorObject.code})
+        dispatch({type: 'TRIPS_LOAD_ERROR', payload: errorObject.code})
       })
-      dispatch({type: 'TRIP_LOAD_REQUEST'})
     }
   },
   deleteTrip(pickedTrip) {
     return (dispatch, getState) => {
+      dispatch({type: 'TRIP_DELETE_REQUEST'})
       ref.child('trips').child(pickedTrip.uid).remove((error) => {
         if (error) {
           dispatch({type: 'TRIP_DELETED_ERROR', payload: error})
@@ -25,7 +26,6 @@ export default {
           dispatch({type: 'TRIP_DELETED_SUCCESS', payload: pickedTrip})
         }
       })
-      dispatch({type: 'TRIP_DELETE_REQUEST'})
     }
   },
   addTrip() {
