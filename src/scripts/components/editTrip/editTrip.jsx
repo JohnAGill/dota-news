@@ -4,14 +4,14 @@ import {connect} from 'react-redux'
 import TripCreator from '../tripCreator/tripCreator'
 
 @connect((state) => state.trip, actions)
-export default class createTrip extends Component {
+export default class EditTrip extends Component {
 
-  addTrip(event) {
-    this.props.addTrip()
+  componentWillMount() {
+    this.props.getTrip(this.props.params.uid)
   }
 
-  seeTrips(event) {
-    this.props.seeTrips()
+  updateTrip() {
+    this.props.updateTrip(this.props.trip, this.props.params.uid)
   }
 
   render() {
@@ -21,11 +21,10 @@ export default class createTrip extends Component {
         updateDestination={this.props.updateDestination}
         updateStartDate={this.props.updateStartDate}
         updateEndDate={this.props.updateEndDate}
-        updateComment={this.props.updateComment} />
-        <button onClick={(e) => this.addTrip(e)} className='btn btn-primary'>Add</button>
-        <a className='btn btn-primary' href='#/trips' role='button'>See Trips</a>
-        {this.props.saved ? <p>Saved {this.props.destination}</p> : null}
+        updateComment={this.props.updateComment}
+        destination={this.props.destination}/>
+        <button onClick={(e) => this.updateTrip(e)} className='btn btn-primary'>Update</button>
       </div>
-    )
+      )
   }
 }

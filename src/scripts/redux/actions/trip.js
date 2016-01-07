@@ -7,7 +7,7 @@ export default {
   addTrip() {
     return (dispatch, getState) => {
       const pushTrip = ref.child('trips')
-      const createTrip = getState().createTrip
+      const createTrip = getState().trip.trip
       pushTrip.push({
         destination: createTrip.destination,
         startDate: createTrip.startDate,
@@ -23,6 +23,32 @@ export default {
       dispatch({type: 'TRIP_ADDED_REQUEST'})
     }
   },
+  seeTrips() {
+    return (dispatch) => {
+      dispatch(pushPath('trips'))
+    }
+  },
+  getTrip(uid) {
+    return (dispatch, getState) => {
+      ref.on('value', (snapshot) => {
+        const trips = (snapshot.val()) ? snapshot.val().trips[uid] : null
+        dispatch({type: 'GET_TRIP', payload: trips})
+      })
+    }
+  },
+  updateTrip(trip, uid) {
+    return (dispatch) => {
+      ref.child('trips').child(uid).update(trip, (error) => {
+        if (error) {
+          dispatch({type: 'UPDATE_TRIP_ERROR', payload: Error})
+        } else {
+          dispatch({type: 'UPDATE_TRIP_SUCCESS', payload: trip})
+          dispatch(pushPath('trips'))
+        }
+      })
+      dispatch({type: 'UPDATE_TRIP_REQUEST'})
+    }
+  },
   updateDestination(destination) {
     return {type: 'TRIP_UPDATE_DESTINATION', payload: destination}
   },
@@ -34,11 +60,6 @@ export default {
   },
   updateComment(comment) {
     return {type: 'TRIP_UPDATE_COMMENT', payload: comment}
-  },
-  seeTrips() {
-    return (dispatch) => {
-      dispatch(pushPath('trips'))
-    }
   }
 }
 

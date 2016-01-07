@@ -21,7 +21,7 @@ export default class Trips extends Component {
   render() {
     return(
       <div>
-        <button onClick={(e) => this.addTrip(e)} className='btn btn-primary'>Add new trip</button>
+        <a className="btn btn-primary" href="#/trips/new" role="button">Add new trip</a>
         <div>
           {
             _.map(this.props.trips, (trip) =>
@@ -34,6 +34,7 @@ export default class Trips extends Component {
                     <li>Comment: {trip.comment}</li>
                   </ul>
                   <button onClick={() => this.deleteTrip(trip)} className='btn btn-primary delete-margin'>Delete</button>
+                  <a className="btn btn-primary" href={`#/trips/${trip.uid}/update`} role="button">Edit</a>
                 </div>
               )
             )

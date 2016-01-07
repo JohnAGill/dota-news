@@ -30,7 +30,7 @@ export default {
   },
   addTrip() {
     return (dispatch) => {
-      dispatch(pushPath('new'))
+      dispatch(pushPath('trips/new'))
     }
   }
 }
