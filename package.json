@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap-sass": "^3.3.5",
     "firebase": "^2.3.2",
+    "font-awesome": "^4.5.0",
     "history": "^1.17.0",
     "ionicons-pre": "^1.0.0-pre",
     "jquery": "^2.1.4",

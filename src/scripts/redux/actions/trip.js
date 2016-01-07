@@ -8,6 +8,7 @@ export default {
     return (dispatch, getState) => {
       const trips = ref.child('trips')
       const trip = getState().trip.trip
+      dispatch({type: 'TRIP_ADDED_REQUEST'})
       trips.push(trip, (error) => {
         if (error) {
           dispatch({type: 'TRIP_ADDED_ERROR', payload: error})
@@ -15,7 +16,6 @@ export default {
           dispatch({type: 'TRIP_ADDED_SUCCESS'})
         }
       })
-      dispatch({type: 'TRIP_ADDED_REQUEST'})
     }
   },
   getTrip(uid) {
@@ -28,6 +28,7 @@ export default {
   },
   updateTrip(trip, uid) {
     return (dispatch) => {
+      dispatch({type: 'UPDATE_TRIP_REQUEST'})
       ref.child('trips').child(uid).update(trip, (error) => {
         if (error) {
           dispatch({type: 'UPDATE_TRIP_ERROR', payload: Error})
@@ -36,7 +37,6 @@ export default {
           dispatch(pushPath('trips'))
         }
       })
-      dispatch({type: 'UPDATE_TRIP_REQUEST'})
     }
   },
   updateDestination(destination) {

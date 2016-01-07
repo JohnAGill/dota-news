@@ -15,6 +15,9 @@ export default class EditTrip extends Component {
   }
 
   render() {
+    if (this.props.loading) {
+      return (<i className='spinner'></i>)
+    }
     return(
       <div className='container'>
         <TripCreator trip={this.props.trip}

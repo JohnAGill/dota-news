@@ -5,7 +5,6 @@ import TripCreator from '../tripCreator/tripCreator'
 
 @connect((state) => state.trip, actions)
 export default class createTrip extends Component {
-
   render() {
     return(
       <div className='container'>
