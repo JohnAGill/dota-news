@@ -14,10 +14,6 @@ export default class Trips extends Component {
     this.props.getTrips()
   }
 
-  addTrip() {
-    this.props.addTrip()
-  }
-
   render() {
     return(
       <div>
