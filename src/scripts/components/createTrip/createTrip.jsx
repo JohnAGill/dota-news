@@ -15,7 +15,7 @@ export default class createTrip extends Component {
           updateComment={this.props.updateComment} />
         <button onClick={() => this.props.addTrip()} className='btn btn-primary'>Add</button>
         <a className='btn btn-primary' href='#/trips' role='button'>See Trips</a>
-        {this.props.saved ? <p>Saved {this.props.destination}</p> : null}
+        {this.props.saved ? <p>Saved</p> : null}
       </div>
     )
   }

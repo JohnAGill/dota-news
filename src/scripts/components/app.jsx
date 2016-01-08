@@ -1,6 +1,14 @@
-import React from 'react'
+import React, {Component} from 'react' // eslint-disable-line no-unused-vars
+import {connect} from 'react-redux'
+import actions from '../redux/actions/users'
 
-const App = React.createClass({
+@connect((state) => state, actions)
+export default class App extends Component {
+
+  componentWillMount() {
+    this.props.getUserAuthData()
+  }
+
   render() {
     return(
       <div>
@@ -8,6 +16,4 @@ const App = React.createClass({
       </div>
     )
   }
-})
-module.exports = App
-
+}

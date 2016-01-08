@@ -49,5 +49,23 @@ export default {
       type: 'UPDATE_PASSWORD',
       payload: password
     }
+  },
+  getUserAuthData() {
+    return (dispatch, getState) => {
+      dispatch({type: 'CHECK_USER_AUTH_REQUEST'})
+      const authDataCallback = (authData) => {
+        if (authData) {
+          dispatch({type: 'USER_AUTH_SUCCESS', payload: authData})
+        } else {
+          dispatch({type: 'USER_AUTH_ERROR', payload: 'error authing user'})
+        }
+      }
+      ref.onAuth(authDataCallback)
+    }
+  },
+  redirectUnauthedUser() {
+    return (dispatch) => {
+      dispatch(pushPath('/'))
+    }
   }
 }

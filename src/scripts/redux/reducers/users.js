@@ -18,6 +18,12 @@ export default function users(state = initialState, action) {
       return {...state, email: action.payload}
     case 'UPDATE_PASSWORD':
       return {...state, password: action.payload}
+    case 'CHECK_USER_AUTH_REQUEST':
+      return state
+    case 'USER_AUTH_ERROR':
+      return {...state, loggedIn: false}
+    case 'USER_AUTH_SUCCESS':
+      return {...state, loggedIn: true, userAuth: {token: action.payload.token, uid: action.payload.uid}}
     default:
       return state
   }

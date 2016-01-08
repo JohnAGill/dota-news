@@ -24,7 +24,8 @@
     semi: [2, "never"],
     space-before-function-paren: [2, "never"],
     space-return-throw-case: [0],
-    object-shorthand: [0]
+    object-shorthand: [0],
+    complexity: [0]
   },
   "settings": {
     import/parser: "babel-eslint"
