@@ -24,9 +24,9 @@ function tripsState(state = initialState, action) {
   }
 }
 export default function trips(state = initialState, action) {
-  const state1 = tripsState(state, action)
+  const tripListState = tripsState(state, action)
   const tripFilter = (trip) => {
-    return(S(trip.destination).contains(state1.filter))
+    return(S(trip.destination).contains(tripListState.filter))
   }
-  return {...state1, visableTrips: _.filter(state1.trips, tripFilter)}
+  return {...tripListState, visableTrips: _.filter(tripListState.trips, tripFilter)}
 }
