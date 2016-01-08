@@ -1,6 +1,9 @@
-const initialState = {newTrip: {}, saved: false, loadError: null, trips: [], loading: true}
+import _ from 'lodash'
+import S from 'string'
 
-export default function trips(state = initialState, action) {
+const initialState = {loadError: null, trips: [], loading: true, filter: ''}
+
+function tripsState(state = initialState, action) {
   switch (action.type) {
     case 'TRIPS_LOAD_SUCCESS':
       return {...state, trips: action.payload, loadError: null, loading: false}
@@ -14,7 +17,16 @@ export default function trips(state = initialState, action) {
       return {...state, deleteError: null}
     case 'TRIP_DELETE_REQUEST':
       return {...state, deleteError: null}
+    case 'UPDATE_FILTER':
+      return {...state, filter: action.payload}
     default:
       return state
   }
+}
+export default function trips(state = initialState, action) {
+  const state1 = tripsState(state, action)
+  const tripFilter = (trip) => {
+    return(S(trip.destination).contains(state1.filter))
+  }
+  return {...state1, visableTrips: _.filter(state1.trips, tripFilter)}
 }

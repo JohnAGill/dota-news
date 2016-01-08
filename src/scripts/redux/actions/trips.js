@@ -32,5 +32,10 @@ export default {
     return (dispatch) => {
       dispatch(pushPath('trips/new'))
     }
+  },
+  updateFilter(filter) {
+    return (dispatch) => {
+      dispatch({type: 'UPDATE_FILTER', payload: filter})
+    }
   }
 }
