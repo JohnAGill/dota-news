@@ -35,7 +35,7 @@ export default {
   },
   updateFilter(filter) {
     return (dispatch) => {
-      dispatch({type: 'UPDATE_FILTER', payload: filter})
+      dispatch({type: 'TRIPS_UPDATE_FILTER', payload: filter})
     }
   }
 }

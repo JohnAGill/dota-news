@@ -17,7 +17,7 @@ function tripsState(state = initialState, action) {
       return {...state, deleteError: null}
     case 'TRIP_DELETE_REQUEST':
       return {...state, deleteError: null}
-    case 'UPDATE_FILTER':
+    case 'TRIPS_UPDATE_FILTER':
       return {...state, filter: action.payload}
     default:
       return state
@@ -28,5 +28,5 @@ export default function trips(state = initialState, action) {
   const tripFilter = (trip) => {
     return(S(trip.destination).contains(tripListState.filter))
   }
-  return {...tripListState, visableTrips: _.filter(tripListState.trips, tripFilter)}
+  return {...tripListState, visibleTrips: _.filter(tripListState.trips, tripFilter)}
 }

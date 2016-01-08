@@ -31,7 +31,7 @@ export default class Trips extends Component {
         </div>
         <div>
            {
-            _.map(this.props.visableTrips, (trip) =>
+            _.map(this.props.visibleTrips, (trip) =>
               (
                 <div className='container'>
                   <ul className='list-padding'>
