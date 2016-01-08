@@ -23,6 +23,7 @@ function tripsState(state = initialState, action) {
       return state
   }
 }
+
 export default function trips(state = initialState, action) {
   const tripListState = tripsState(state, action)
   const tripFilter = (trip) => {
