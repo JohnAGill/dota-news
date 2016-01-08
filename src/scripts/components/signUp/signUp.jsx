@@ -20,9 +20,7 @@ export default class SignUp extends Component {
 
   render() {
     if (this.props.loading) {
-      return(<p>Loading!</p>)
-    } else if (this.props.loggedIn) {
-      return(<p>Logged In!</p>)
+      return (<i className='spinner'></i>)
     }
     return(
       <div>
