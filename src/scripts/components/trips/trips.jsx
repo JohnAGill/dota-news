@@ -20,11 +20,18 @@ export default class Trips extends Component {
     }
     return(
       <div className='container'>
-        <a className="btn btn-primary" href="#/trips/new" role="button">Add new trip</a>
-        <button onClick={window.print} className='btn btn-primary delete-margin'>Print</button>
+
+        <div className='row'>
+          <a className="btn btn-primary" href="#/trips/new" role="button">Add new trip</a>
+          <button onClick={window.print} className='btn btn-primary delete-margin'>Print</button>
+        </div>
+        <div className='row'>
+          <p className='col-md-1 filter-header'>Filter</p>
+          <input onChange={(e) => this.props.updateFilter(e.target.value)} className='col-md-3 filter' />
+        </div>
         <div>
-          {
-            _.map(this.props.trips, (trip) =>
+           {
+            _.map(this.props.visibleTrips, (trip) =>
               (
                 <div className='container'>
                   <ul className='list-padding'>
