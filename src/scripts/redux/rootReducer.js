@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   users,
   router,
   trips,
-  trip,
+  trip
 })
 
 export default rootReducer
