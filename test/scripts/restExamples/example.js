@@ -7,7 +7,7 @@ import superagent from 'superagent'
 const tripsUrl = 'https://toptal-project.firebaseio.com/trips.json'
 
 describe('rest example', () => {
-  it(`should get data from ${tripsUrl}`, (done) => {
+  xit(`should get data from ${tripsUrl}`, (done) => {
     superagent
       .get(tripsUrl)
       .end((err, res) => {
