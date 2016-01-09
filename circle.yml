@@ -1,2 +1,3 @@
 test:
-  override: npm run ci
+  override:
+    - npm run ci
