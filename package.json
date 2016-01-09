@@ -59,6 +59,7 @@
   },
   "scripts": {
     "build": "webpack",
+    "ci": "npm run lint && npm run test",
     "dev": "webpack-dev-server --devtool sourcemaps --progress --colors --hot --inline --history-api-fallback --content-base build",
     "fix_js": "eslint --fix src/scripts",
     "lint_html": "htmllint build/**/*.html",

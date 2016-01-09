@@ -11,9 +11,9 @@ function tripsState(state = initialState, action) {
       return {...state, trips: [], loadError: action.payload, loading: false}
     case 'TRIPS_LOAD_REQUEST':
       return {...state, loadError: null, loading: true}
-    case 'TRIP_DELETED_ERROR':
+    case 'TRIP_DELETE_ERROR':
       return {...state, deleteError: action.payload}
-    case 'TRIP_DELETED_SUCCESS':
+    case 'TRIP_DELETE_SUCCESS':
       return {...state, deleteError: null}
     case 'TRIP_DELETE_REQUEST':
       return {...state, deleteError: null}
