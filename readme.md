@@ -1,4 +1,4 @@
-#Toptal Project [![Circle CI](https://circleci.com/gh/z-dev/toptal-project.svg?style=svg)](https://circleci.com/gh/z-dev/toptal-project)
+#Toptal Project [![Circle CI](https://circleci.com/gh/z-dev/toptal-project.svg?style=svg&circle-token=7407e9fd04fc44262628bf01efa209048fba18f4)](https://circleci.com/gh/z-dev/toptal-project)
 
 
 ## Commands
