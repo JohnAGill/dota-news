@@ -4,7 +4,6 @@ import DatePicker from 'react-datepicker'
 export default class tripCreator extends Component {
 
   render() {
-    console.log(this.props.trip.startDate)
     return(
       <div className='row input-padding'>
         <div className='row'>
