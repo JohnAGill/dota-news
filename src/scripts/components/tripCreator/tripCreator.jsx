@@ -1,4 +1,5 @@
 import React, {Component} from 'react' // eslint-disable-line no-unused-vars
+import DatePicker from 'react-datepicker'
 
 export default class tripCreator extends Component {
 
@@ -6,12 +7,8 @@ export default class tripCreator extends Component {
     this.props.updateDestination(event.target.value)
   }
 
-  startDate(event) {
-    this.props.updateStartDate(event.target.value)
-  }
-
   endDate(event) {
-    this.props.updateEndDate(event.target.value)
+    this.props.updateEndDate(event.format('l'))
   }
 
   comment(event) {
@@ -19,16 +16,25 @@ export default class tripCreator extends Component {
   }
 
   render() {
+    console.log(this.props.trip.startDate)
     return(
       <div className='row input-padding'>
-        <p className='col-md-1'>Destination</p>
-        <input onChange={(e) => this.destination(e)} className='col-md-2' value={this.props.trip.destination} />
-        <p className='col-md-1'>StartDate</p>
-        <input onChange={(e) => this.startDate(e)} className='col-md-2' value={this.props.trip.startDate} />
-        <p className='col-md-1'>EndDate</p>
-        <input onChange={(e) => this.endDate(e)} className='col-md-2' value={this.props.trip.endDate} />
-        <p className='col-md-1'>Comment</p>
-        <input onChange={(e) => this.comment(e)} className='col-md-2' value={this.props.trip.comment} />
+        <div className='row'>
+          <p className='col-md-1'>Destination</p>
+          <input onChange={(e) => this.destination(e)} className='col-md-2' value={this.props.trip.destination} />
+        </div>
+        <div className='row'>
+          <p className='col-md-1'>StartDate</p>
+          <DatePicker placeholder='Select a date' selected={this.props.trip.startDate} onChange={(e) => this.props.updateStartDate(e)} />
+        </div>
+        <div className='row'>
+          <p className='col-md-1'>EndDate</p>
+          <DatePicker placeholder='Select a date' selected={this.props.trip.endDate} onChange={(e) => this.props.updateEndDate(e)} />
+        </div>
+        <div className='row'>
+          <p className='col-md-1'>Comment</p>
+          <input onChange={(e) => this.comment(e)} className='col-md-2' value={this.props.trip.comment} />
+        </div>
       </div>
     )
   }

@@ -9,7 +9,12 @@ export default {
       const trips = ref.child('trips')
       const trip = getState().trip.trip
       dispatch({type: 'TRIP_ADDED_REQUEST'})
-      trips.push(trip, (error) => {
+      trips.push({
+        destination: trip.destination,
+        comment: trip.comment,
+        startDate: trip.startDate.format('l'),
+        endDate: trip.endDate.format('l')
+      }, (error) => {
         if (error) {
           dispatch({type: 'TRIP_ADDED_ERROR', payload: error})
         } else {
