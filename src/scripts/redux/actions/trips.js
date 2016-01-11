@@ -21,9 +21,9 @@ export default {
       dispatch({type: 'TRIP_DELETE_REQUEST'})
       ref.child('trips').child(pickedTrip.uid).remove((error) => {
         if (error) {
-          dispatch({type: 'TRIP_DELETED_ERROR', payload: error})
+          dispatch({type: 'TRIP_DELETE_ERROR', payload: error})
         } else {
-          dispatch({type: 'TRIP_DELETED_SUCCESS', payload: pickedTrip})
+          dispatch({type: 'TRIP_DELETE_SUCCESS', payload: pickedTrip})
         }
       })
     }
