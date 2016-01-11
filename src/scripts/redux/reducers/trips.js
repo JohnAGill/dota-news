@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import S from 'string'
+import { createSelector } from 'reselect'
 
 const initialState = {loadError: null, trips: [], loading: true, filter: ''}
 
@@ -24,10 +25,13 @@ function tripsState(state = initialState, action) {
   }
 }
 
-export default function trips(state = initialState, action) {
-  const tripListState = tripsState(state, action)
-  const tripFilter = (trip) => {
-    return(S(trip.destination).contains(tripListState.filter))
+function addVisibleTrips(state) {
+  const visibleTrips = _.filter(state.trips, (trip) => (S(trip.destination).contains(state.filter)))
+  if (_.isEqual(visibleTrips, state.visibleTrips)) {
+    return state
   }
-  return {...tripListState, visibleTrips: _.filter(tripListState.trips, tripFilter)}
+  return {...state, visibleTrips: _.filter(state.trips, tripFilter)}
 }
+
+export default createSelector(tripsState, addVisibleTrips)
+
