@@ -3,25 +3,13 @@ import DatePicker from 'react-datepicker'
 
 export default class tripCreator extends Component {
 
-  destination(event) {
-    this.props.updateDestination(event.target.value)
-  }
-
-  endDate(event) {
-    this.props.updateEndDate(event.format('l'))
-  }
-
-  comment(event) {
-    this.props.updateComment(event.target.value)
-  }
-
   render() {
     console.log(this.props.trip.startDate)
     return(
       <div className='row input-padding'>
         <div className='row'>
           <p className='col-md-1'>Destination</p>
-          <input onChange={(e) => this.destination(e)} className='col-md-2' value={this.props.trip.destination} />
+          <input onChange={(e) => this.props.updateDestination(e.target.value)} className='col-md-2' value={this.props.trip.destination} />
         </div>
         <div className='row'>
           <p className='col-md-1'>StartDate</p>
@@ -33,7 +21,7 @@ export default class tripCreator extends Component {
         </div>
         <div className='row'>
           <p className='col-md-1'>Comment</p>
-          <input onChange={(e) => this.comment(e)} className='col-md-2' value={this.props.trip.comment} />
+          <input onChange={(e) => this.props.updateComment(e.target.value)} className='col-md-2' value={this.props.trip.comment} />
         </div>
       </div>
     )
