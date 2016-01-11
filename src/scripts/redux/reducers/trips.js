@@ -30,8 +30,7 @@ function addVisibleTrips(state) {
   if (_.isEqual(visibleTrips, state.visibleTrips)) {
     return state
   }
-  return {...state, visibleTrips: _.filter(state.trips, tripFilter)}
+  return {...state, visibleTrips: visibleTrips}
 }
 
 export default createSelector(tripsState, addVisibleTrips)
-
