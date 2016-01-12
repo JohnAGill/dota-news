@@ -16,7 +16,10 @@ export default class Trips extends Component {
   }
 
   countDown(trip) {
-    return(Moment(trip.startDate).diff(Moment(), 'days'))
+    if (Moment().isSameOrAfter(Moment(trip.startDate))) {
+      return (null)
+    }
+    return(<li>Days till trip starts: {Moment(trip.startDate).diff(Moment(), 'days')}</li>)
   }
 
   render() {
@@ -44,7 +47,7 @@ export default class Trips extends Component {
                     <li>Start Date: {trip.startDate}</li>
                     <li>End Date: {trip.endDate}</li>
                     <li>Comment: {trip.comment}</li>
-                    <li>Days till trip starts: {this.countDown(trip)} days</li>
+                    {this.countDown(trip)}
                   </ul>
                   <button onClick={() => this.deleteTrip(trip)} className='btn btn-primary delete-margin'>Delete</button>
                   <a className="btn btn-primary" href={`#/trips/${trip.uid}/update`} role="button">Edit</a>
