@@ -26,8 +26,8 @@ export default {
   },
   getTrip(uid) {
     return (dispatch, getState) => {
-      tripsRef.on('value', (snapshot) => {
-        const trips = (snapshot.val()) ? snapshot.val()[getUidFromState(getState())] : []
+      tripsRef.child(getUidFromState(getState())).on('value', (snapshot) => {
+        const trips = (snapshot.val()) ? snapshot.val() : []
         const trip = trips[uid]
         dispatch({type: 'GET_TRIP', payload: trip})
       })
@@ -57,6 +57,9 @@ export default {
   },
   updateComment(comment) {
     return {type: 'TRIP_UPDATE_COMMENT', payload: comment}
+  },
+  cancel() {
+    return {type: 'CANCEL_UPDATE'}
   }
 }
 

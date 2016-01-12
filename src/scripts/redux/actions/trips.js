@@ -9,9 +9,9 @@ export default {
   getTrips() {
     return (dispatch, getState) => {
       dispatch({type: 'TRIPS_LOAD_REQUEST'})
-      tripsRef.on('value', (snapshot) => {
+      tripsRef.child(getUidFromState(getState())).on('value', (snapshot) => {
         const trips = (snapshot.val()) ? snapshot.val() : []
-        dispatch({type: 'TRIPS_LOAD_SUCCESS', payload: _.map(trips[getUidFromState(getState())], (trip, uid) => ({...trip, uid: uid}))})
+        dispatch({type: 'TRIPS_LOAD_SUCCESS', payload: _.map(trips, (trip, uid) => ({...trip, uid: uid}))})
       }, (errorObject) => {
         dispatch({type: 'TRIPS_LOAD_ERROR', payload: errorObject.code})
       })
