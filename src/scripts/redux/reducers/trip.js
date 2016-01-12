@@ -1,4 +1,6 @@
-const initialState = {saved: false, loading: true, trip: {destination: null, startDate: null, endDate: null, comment: null}}
+import Moment from 'moment'
+
+const initialState = {saved: false, loading: true, trip: {destination: null, startDate: Moment(), endDate: Moment(), comment: null}}
 
 export default function createTrip(state = initialState, action) {
   switch (action.type) {
