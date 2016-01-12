@@ -27,7 +27,7 @@ export default class EditTrip extends Component {
           updateComment={this.props.updateComment}
           destination={this.props.destination}/>
         <button onClick={(e) => this.updateTrip(e)} className='btn btn-primary'>Update</button>
-        <a className='btn btn-primary' href='#/trips' role='button'>cancel</a>
+        <a onClick={(e) => this.updateTrip(e)} className='btn btn-primary' href='#/trips' role='button'>cancel</a>
       </div>
       )
   }

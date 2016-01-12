@@ -3,7 +3,6 @@ import DatePicker from 'react-datepicker'
 import Moment from 'moment'
 
 export default class tripCreator extends Component {
-
   render() {
     return(
       <div className='row input-padding'>
