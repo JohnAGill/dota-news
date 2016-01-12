@@ -9,7 +9,7 @@ export default function createTrip(state = initialState, action) {
     case 'TRIP_ADDED_ERROR':
       return {...state, error: action.payload, saved: false}
     case 'TRIP_ADDED_SUCCESS':
-      return {...state, saved: true, trip: {destination: null, startDate: null, endDate: null, comment: null}}
+      return {...state, saved: true, trip: {destination: null, startDate: Moment(), endDate: Moment(), comment: null}}
     case 'TRIP_UPDATE_DESTINATION':
       return {...state, trip: {...state.trip, destination: action.payload}}
     case 'TRIP_UPDATE_START_DATE':
