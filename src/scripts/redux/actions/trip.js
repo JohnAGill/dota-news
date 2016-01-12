@@ -6,7 +6,8 @@ const ref = new Firebase('https://toptal-project.firebaseio.com')
 export default {
   addTrip() {
     return (dispatch, getState) => {
-      const trips = ref.child('trips')
+      const uid = getState().users.userAuth.uid
+      const trips = ref.child('trips').child(uid)
       const trip = getState().trip.trip
       dispatch({type: 'TRIP_ADDED_REQUEST'})
       trips.push({
@@ -26,15 +27,18 @@ export default {
   getTrip(uid) {
     return (dispatch, getState) => {
       ref.on('value', (snapshot) => {
-        const trips = (snapshot.val()) ? snapshot.val().trips[uid] : []
-        dispatch({type: 'GET_TRIP', payload: trips})
+        const userId = getState().users.userAuth.uid
+        const trips = (snapshot.val()) ? snapshot.val().trips[userId] : []
+        const trip = trips[uid]
+        dispatch({type: 'GET_TRIP', payload: trip})
       })
     }
   },
   updateTrip(trip, uid) {
-    return (dispatch) => {
+    return (dispatch, getState) => {
       dispatch({type: 'UPDATE_TRIP_REQUEST'})
-      ref.child('trips').child(uid).update(trip, (error) => {
+      const userId = getState().users.userAuth.uid
+      ref.child('trips').child(userId).child(uid).update(trip, (error) => {
         if (error) {
           dispatch({type: 'UPDATE_TRIP_ERROR', payload: Error})
         } else {
