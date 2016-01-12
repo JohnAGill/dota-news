@@ -2,6 +2,7 @@ import React, {Component} from 'react' // eslint-disable-line no-unused-vars
 import _ from 'lodash'
 import actions from '../../redux/actions/trips'
 import {connect} from 'react-redux'
+import Moment from 'moment'
 
 @connect((state) => state.trips, actions)
 export default class Trips extends Component {
@@ -12,6 +13,10 @@ export default class Trips extends Component {
 
   componentWillMount() {
     this.props.getTrips()
+  }
+
+  countDown(trip) {
+    return(Moment(trip.startDate).diff(Moment(), 'days'))
   }
 
   render() {
@@ -39,6 +44,7 @@ export default class Trips extends Component {
                     <li>Start Date: {trip.startDate}</li>
                     <li>End Date: {trip.endDate}</li>
                     <li>Comment: {trip.comment}</li>
+                    <li>Days till trip starts: {this.countDown(trip)} days</li>
                   </ul>
                   <button onClick={() => this.deleteTrip(trip)} className='btn btn-primary delete-margin'>Delete</button>
                   <a className="btn btn-primary" href={`#/trips/${trip.uid}/update`} role="button">Edit</a>
