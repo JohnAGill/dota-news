@@ -5,7 +5,6 @@ import Moment from 'moment'
 export default class tripCreator extends Component {
 
   render() {
-    console.log(Moment())
     return(
       <div className='row input-padding'>
         <div className='row'>
