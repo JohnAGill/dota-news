@@ -1,15 +1,16 @@
 import Firebase from 'firebase'
 import _ from 'lodash'
 import { pushPath } from 'redux-simple-router'
+import getUidFromState from './common'
 
-const ref = new Firebase('https://toptal-project.firebaseio.com')
+const tripsRef = new Firebase('https://toptal-project.firebaseio.com/trips')
 
 export default {
   getTrips() {
-    return (dispatch) => {
+    return (dispatch, getState) => {
       dispatch({type: 'TRIPS_LOAD_REQUEST'})
-      ref.on('value', (snapshot) => {
-        const trips = (snapshot.val()) ? snapshot.val().trips : []
+      tripsRef.child(getUidFromState(getState())).on('value', (snapshot) => {
+        const trips = (snapshot.val()) ? snapshot.val() : []
         dispatch({type: 'TRIPS_LOAD_SUCCESS', payload: _.map(trips, (trip, uid) => ({...trip, uid: uid}))})
       }, (errorObject) => {
         dispatch({type: 'TRIPS_LOAD_ERROR', payload: errorObject.code})
@@ -19,7 +20,7 @@ export default {
   deleteTrip(pickedTrip) {
     return (dispatch, getState) => {
       dispatch({type: 'TRIP_DELETE_REQUEST'})
-      ref.child('trips').child(pickedTrip.uid).remove((error) => {
+      tripsRef.child(getUidFromState(getState())).child(pickedTrip.uid).remove((error) => {
         if (error) {
           dispatch({type: 'TRIP_DELETE_ERROR', payload: error})
         } else {
