@@ -30,10 +30,9 @@ const getTripsForUser = (dispatch, getState) => {
 
 export default {
   getTrips() {
-    const userId = adminUserId
     return (dispatch, getState) => {
       dispatch({type: 'TRIPS_LOAD_REQUEST'})
-      if (getUidFromState(getState()) === userId) {
+      if (getUidFromState(getState()) === adminUserId) {
         getTripsForAdmin(dispatch)
       } else {
         getTripsForUser(dispatch, getState)
