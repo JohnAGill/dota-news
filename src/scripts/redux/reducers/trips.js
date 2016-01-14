@@ -6,6 +6,10 @@ const initialState = {loadError: null, trips: [], loading: true, filter: ''}
 
 function tripsState(state = initialState, action) {
   switch (action.type) {
+    case 'ADMIN_TRIPS_LOAD_SUCCESS':
+      return {...state, trips: action.payload, loadError: null, loading: false}
+    case 'ADMIN_TRIPS_LOAD_ERROR':
+      return {...state, trips: [], loadError: action.payload, loading: false}
     case 'TRIPS_LOAD_SUCCESS':
       return {...state, trips: action.payload, loadError: null, loading: false}
     case 'TRIPS_LOAD_ERROR':

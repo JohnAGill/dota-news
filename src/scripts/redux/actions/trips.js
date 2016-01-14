@@ -9,12 +9,25 @@ export default {
   getTrips() {
     return (dispatch, getState) => {
       dispatch({type: 'TRIPS_LOAD_REQUEST'})
-      tripsRef.child(getUidFromState(getState())).on('value', (snapshot) => {
-        const trips = (snapshot.val()) ? snapshot.val() : []
-        dispatch({type: 'TRIPS_LOAD_SUCCESS', payload: _.map(trips, (trip, uid) => ({...trip, uid: uid}))})
-      }, (errorObject) => {
-        dispatch({type: 'TRIPS_LOAD_ERROR', payload: errorObject.code})
-      })
+      if (getUidFromState(getState()) === '2f02427d-2858-4f06-a3a9-fc5b957547c0') {
+        tripsRef.on('value', (snapshot) => {
+          const users = (snapshot.val()) ? snapshot.val() : []
+          dispatch({type: 'ADMIN_TRIPS_LOAD_SUCCESS', payload: _.flattenDeep(_.map(users, (trips, userId) => {
+            return (_.map(trips, (trip, uid) => {
+              return ({...trip, uid: uid})
+            }))
+          }))})
+        }, (errorObject) => {
+          dispatch({type: 'ADMIN_TRIPS_LOAD_ERROR', payload: errorObject.code})
+        })
+      } else {
+        tripsRef.child(getUidFromState(getState())).on('value', (snapshot) => {
+          const trips = (snapshot.val()) ? snapshot.val() : []
+          dispatch({type: 'TRIPS_LOAD_SUCCESS', payload: _.map(trips, (trip, uid) => ({...trip, uid: uid}))})
+        }, (errorObject) => {
+          dispatch({type: 'TRIPS_LOAD_ERROR', payload: errorObject.code})
+        })
+      }
     }
   },
   deleteTrip(pickedTrip) {
