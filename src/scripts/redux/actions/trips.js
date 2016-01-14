@@ -1,26 +1,48 @@
 import Firebase from 'firebase'
 import _ from 'lodash'
 import { pushPath } from 'redux-simple-router'
-import getUidFromState from './common'
+import {adminUserId, getUidFromState} from './common'
 
 const tripsRef = new Firebase('https://toptal-project.firebaseio.com/trips')
+
+const getTripsForAdmin = (dispatch) => {
+  tripsRef.on('value', (snapshot) => {
+    const users = (snapshot.val()) ? snapshot.val() : []
+    dispatch({type: 'ADMIN_TRIPS_LOAD_SUCCESS', payload: _.flattenDeep(_.map(users, (trips, userId) => {
+      return (_.map(trips, (trip, uid) => {
+        return ({...trip, uid: uid, userId: userId})
+      }))
+    }))})
+  }, (errorObject) => {
+    dispatch({type: 'ADMIN_TRIPS_LOAD_ERROR', payload: errorObject.code})
+  })
+}
+
+const getTripsForUser = (dispatch, getState) => {
+  const userId = getUidFromState(getState())
+  tripsRef.child(userId).on('value', (snapshot) => {
+    const trips = (snapshot.val()) ? snapshot.val() : []
+    dispatch({type: 'TRIPS_LOAD_SUCCESS', payload: _.map(trips, (trip, uid) => ({...trip, uid: uid, userId: userId}))})
+  }, (errorObject) => {
+    dispatch({type: 'TRIPS_LOAD_ERROR', payload: errorObject.code})
+  })
+}
 
 export default {
   getTrips() {
     return (dispatch, getState) => {
       dispatch({type: 'TRIPS_LOAD_REQUEST'})
-      tripsRef.child(getUidFromState(getState())).on('value', (snapshot) => {
-        const trips = (snapshot.val()) ? snapshot.val() : []
-        dispatch({type: 'TRIPS_LOAD_SUCCESS', payload: _.map(trips, (trip, uid) => ({...trip, uid: uid}))})
-      }, (errorObject) => {
-        dispatch({type: 'TRIPS_LOAD_ERROR', payload: errorObject.code})
-      })
+      if (getUidFromState(getState()) === adminUserId) {
+        getTripsForAdmin(dispatch)
+      } else {
+        getTripsForUser(dispatch, getState)
+      }
     }
   },
   deleteTrip(pickedTrip) {
     return (dispatch, getState) => {
       dispatch({type: 'TRIP_DELETE_REQUEST'})
-      tripsRef.child(getUidFromState(getState())).child(pickedTrip.uid).remove((error) => {
+      tripsRef.child(pickedTrip.userId).child(pickedTrip.uid).remove((error) => {
         if (error) {
           dispatch({type: 'TRIP_DELETE_ERROR', payload: error})
         } else {

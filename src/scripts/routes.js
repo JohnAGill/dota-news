@@ -18,7 +18,7 @@ const childRoutes = [
     { path: 'login', component: Login },
     { path: 'trips', component: Trips },
     { path: 'trips/new', component: CreateTrip },
-    { path: 'trips/:uid/update', component: EditTrip }
+    { path: 'trips/:usersId/:uid/update', component: EditTrip }
 ]
 
 const authRoute = (route) => {

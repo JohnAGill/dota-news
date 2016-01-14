@@ -1,6 +1,6 @@
 import Firebase from 'firebase'
 import { pushPath } from 'redux-simple-router'
-import getUidFromState from './common'
+import {getUidFromState} from './common'
 
 const tripsRef = new Firebase('https://toptal-project.firebaseio.com/trips')
 
@@ -24,21 +24,20 @@ export default {
       })
     }
   },
-  getTrip(uid) {
+  getTrip(uid, userId) {
     return (dispatch, getState) => {
-      tripsRef.child(getUidFromState(getState())).on('value', (snapshot) => {
-        const trips = (snapshot.val()) ? snapshot.val() : []
-        const trip = trips[uid]
+      tripsRef.child(userId).child(uid).on('value', (snapshot) => {
+        const trip = (snapshot.val()) ? snapshot.val() : []
         dispatch({type: 'GET_TRIP', payload: trip})
       })
     }
   },
-  updateTrip(trip, uid) {
+  updateTrip(trip, uid, userId) {
     return (dispatch, getState) => {
       dispatch({type: 'UPDATE_TRIP_REQUEST'})
-      tripsRef.child(getUidFromState(getState())).child(uid).update(trip, (error) => {
+      tripsRef.child(userId).child(uid).update(trip, (error) => {
         if (error) {
-          dispatch({type: 'UPDATE_TRIP_ERROR', payload: Error})
+          dispatch({type: 'UPDATE_TRIP_ERROR', payload: error})
         } else {
           dispatch({type: 'UPDATE_TRIP_SUCCESS', payload: trip})
           dispatch(pushPath('trips'))

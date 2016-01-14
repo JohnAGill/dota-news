@@ -50,7 +50,7 @@ export default class Trips extends Component {
                     {this.countDown(trip)}
                   </ul>
                   <button onClick={() => this.deleteTrip(trip)} className='btn btn-primary delete-margin'>Delete</button>
-                  <a className="btn btn-primary" href={`#/trips/${trip.uid}/update`} role="button">Edit</a>
+                  <a className="btn btn-primary" href={`#/trips/${trip.userId}/${trip.uid}/update`} role="button">Edit</a>
                 </div>
               )
             )

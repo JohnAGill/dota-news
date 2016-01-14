@@ -7,11 +7,11 @@ import TripCreator from '../tripCreator/tripCreator'
 export default class EditTrip extends Component {
 
   componentWillMount() {
-    this.props.getTrip(this.props.params.uid)
+    this.props.getTrip(this.props.params.uid, this.props.params.usersId)
   }
 
   updateTrip() {
-    this.props.updateTrip(this.props.trip, this.props.params.uid)
+    this.props.updateTrip(this.props.trip, this.props.params.uid, this.props.params.usersId)
   }
 
   render() {
