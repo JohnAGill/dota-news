@@ -1,6 +1,6 @@
 import Firebase from 'firebase'
 import { pushPath } from 'redux-simple-router'
-import getUidFromState from './common'
+import {getUidFromState} from './common'
 
 const tripsRef = new Firebase('https://toptal-project.firebaseio.com/trips')
 

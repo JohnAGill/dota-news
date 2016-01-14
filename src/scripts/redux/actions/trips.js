@@ -1,7 +1,7 @@
 import Firebase from 'firebase'
 import _ from 'lodash'
 import { pushPath } from 'redux-simple-router'
-import getUidFromState, {admin} from './common'
+import {adminUserId, getUidFromState} from './common'
 
 const tripsRef = new Firebase('https://toptal-project.firebaseio.com/trips')
 
@@ -19,9 +19,10 @@ const getTripsForAdmin = (dispatch) => {
 }
 
 const getTripsForUser = (dispatch, getState) => {
-  tripsRef.child(getUidFromState(getState())).on('value', (snapshot) => {
+  const userId = getUidFromState(getState())
+  tripsRef.child(userId).on('value', (snapshot) => {
     const trips = (snapshot.val()) ? snapshot.val() : []
-    dispatch({type: 'TRIPS_LOAD_SUCCESS', payload: _.map(trips, (trip, uid) => ({...trip, uid: uid, userId: getUidFromState(getState())}))})
+    dispatch({type: 'TRIPS_LOAD_SUCCESS', payload: _.map(trips, (trip, uid) => ({...trip, uid: uid, userId: userId}))})
   }, (errorObject) => {
     dispatch({type: 'TRIPS_LOAD_ERROR', payload: errorObject.code})
   })
@@ -29,7 +30,7 @@ const getTripsForUser = (dispatch, getState) => {
 
 export default {
   getTrips() {
-    const userId = admin
+    const userId = adminUserId
     return (dispatch, getState) => {
       dispatch({type: 'TRIPS_LOAD_REQUEST'})
       if (getUidFromState(getState()) === userId) {
@@ -46,7 +47,7 @@ export default {
         if (error) {
           dispatch({type: 'TRIP_DELETE_ERROR', payload: error})
         } else {
-          dispatch({typr: 'TRIP_DELETE_SUCCESS', payload: pickedTrip})
+          dispatch({type: 'TRIP_DELETE_SUCCESS', payload: pickedTrip})
         }
       })
     }
