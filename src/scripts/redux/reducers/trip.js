@@ -18,8 +18,6 @@ export default function createTrip(state = initialState, action) {
       return {...state, trip: {...state.trip, endDate: action.payload}}
     case 'TRIP_UPDATE_COMMENT':
       return {...state, trip: {...state.trip, comment: action.payload}}
-    case 'ADMIN_GET_TRIP':
-      return {...state, trip: action.payload, loading: false}
     case 'GET_TRIP':
       return {...state, trip: action.payload, loading: false}
     case 'UPDATE_TRIP_ERROR':
