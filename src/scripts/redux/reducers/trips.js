@@ -10,6 +10,10 @@ function tripsState(state = initialState, action) {
       return {...state, trips: action.payload, loadError: null, loading: false}
     case 'ADMIN_TRIPS_LOAD_ERROR':
       return {...state, trips: [], loadError: action.payload, loading: false}
+    case 'ADMIN_TRIP_DELETE_ERROR':
+      return {...state, deleteError: action.payload}
+    case 'ADMIN_TRIP_DELETE_SUCCESS':
+      return {...state, deleteError: null}
     case 'TRIPS_LOAD_SUCCESS':
       return {...state, trips: action.payload, loadError: null, loading: false}
     case 'TRIPS_LOAD_ERROR':

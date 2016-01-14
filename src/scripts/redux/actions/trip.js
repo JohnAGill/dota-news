@@ -24,26 +24,44 @@ export default {
       })
     }
   },
-  getTrip(uid) {
+  getTrip(uid, userId) {
     return (dispatch, getState) => {
-      tripsRef.child(getUidFromState(getState())).on('value', (snapshot) => {
-        const trips = (snapshot.val()) ? snapshot.val() : []
-        const trip = trips[uid]
-        dispatch({type: 'GET_TRIP', payload: trip})
-      })
+      if (getUidFromState(getState()) === '2f02427d-2858-4f06-a3a9-fc5b957547c0') {
+        tripsRef.child(userId).child(uid).on('value', (snapshot) => {
+          const trip = (snapshot.val()) ? snapshot.val() : []
+          dispatch({type: 'ADMIN_GET_TRIP', payload: trip})
+        })
+      } else {
+        tripsRef.child(getUidFromState(getState())).on('value', (snapshot) => {
+          const trips = (snapshot.val()) ? snapshot.val() : []
+          const trip = trips[uid]
+          dispatch({type: 'GET_TRIP', payload: trip})
+        })
+      }
     }
   },
-  updateTrip(trip, uid) {
+  updateTrip(trip, uid, userId) {
     return (dispatch, getState) => {
       dispatch({type: 'UPDATE_TRIP_REQUEST'})
-      tripsRef.child(getUidFromState(getState())).child(uid).update(trip, (error) => {
-        if (error) {
-          dispatch({type: 'UPDATE_TRIP_ERROR', payload: Error})
-        } else {
-          dispatch({type: 'UPDATE_TRIP_SUCCESS', payload: trip})
-          dispatch(pushPath('trips'))
-        }
-      })
+      if (getUidFromState(getState()) === '2f02427d-2858-4f06-a3a9-fc5b957547c0') {
+        tripsRef.child(userId).child(uid).update(trip, (error) => {
+          if (error) {
+            dispatch({type: 'ADMIN_UPDATE_TRIP_ERROR', payload: error})
+          } else {
+            dispatch({type: 'ADMIN_UPDATE_TRIP_SUCCESS', payload: trip})
+            dispatch(pushPath('trips'))
+          }
+        })
+      } else {
+        tripsRef.child(getUidFromState(getState())).child(uid).update(trip, (error) => {
+          if (error) {
+            dispatch({type: 'UPDATE_TRIP_ERROR', payload: error})
+          } else {
+            dispatch({type: 'UPDATE_TRIP_SUCCESS', payload: trip})
+            dispatch(pushPath('trips'))
+          }
+        })
+      }
     }
   },
   updateDestination(destination) {
