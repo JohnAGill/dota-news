@@ -10,6 +10,8 @@ export default {
         const stories = (snapshot.val() ? snapshot.val() : [])
         dispatch({type: 'GET_STORIES_SUCCESS', payload: stories})
         return (console.log(stories))
+      }, (errorObject) => {
+        dispatch({type: 'GET_STORIES_ERROR', payload: errorObject.code})
       })
     }
   }
