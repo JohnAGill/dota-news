@@ -8,7 +8,7 @@ export default class StoryCards extends Component {
       <div className='container'>
         {_.map(this.props.stories, (story) =>
           (
-            <div className='card flex1'>
+            <div className='card card-size'>
               <ul>
                 <h4>{story.headline}</h4>
                 <li><a href={story.links[0].link}>{story.links[0].source}</a></li>
