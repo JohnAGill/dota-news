@@ -3,15 +3,15 @@ import Firebase from 'firebase'
 const storiesRef = new Firebase('https://e-sports-news-dev.firebaseio.com/dota/stories')
 
 export default {
-  getStories() {
+  loadStories() {
     return(dispatch) => {
-      dispatch({type: 'GET_STORIES_REQUEST'})
+      dispatch({type: 'LOAD_STORIES_REQUEST'})
       storiesRef.on('value', (snapshot) => {
         const stories = (snapshot.val() ? snapshot.val() : [])
-        dispatch({type: 'GET_STORIES_SUCCESS', payload: stories})
+        dispatch({type: 'LOAD_STORIES_SUCCESS', payload: stories})
         return (console.log(stories))
       }, (errorObject) => {
-        dispatch({type: 'GET_STORIES_ERROR', payload: errorObject.code})
+        dispatch({type: 'LOAD_STORIES_ERROR', payload: errorObject.code})
       })
     }
   }
