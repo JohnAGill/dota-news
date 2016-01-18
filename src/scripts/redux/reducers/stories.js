@@ -1,6 +1,6 @@
 const initialState = {loading: false, errorMessage: null, stories: []}
 
-export default function stories(state = initialState, action) {
+export default function stories (state = initialState, action) {
   switch (action.type) {
     case 'LOAD_STORIES_REQUEST':
       return state
