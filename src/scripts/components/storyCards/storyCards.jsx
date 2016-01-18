@@ -8,13 +8,13 @@ export default class StoryCards extends Component {
       <div className='container'>
         {_.map(this.props.stories, (story) =>
           (
-            <div className='card card-size'>
+            <div className='card'>
               <ul>
                 <h4>{story.headline}</h4>
                 <li><a href={story.links[0].link}>{story.links[0].source}</a></li>
                 <li><a href={story.links[1].link}>{story.links[1].source}</a></li>
                 <li><a href={story.links[2].link}>{story.links[2].source}</a></li>
-                <p className='date-position'>{story.date}</p>
+                <p>{story.date}</p>
               </ul>
             </div>
           )
