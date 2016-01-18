@@ -3,7 +3,6 @@ import './googleAnalytics.js'
 // This puts a <style> tag in <head> of page with transpiled css.
 import '../styles/main.scss'
 
-
 // Import bootstrap (which requires jQuery)
 import 'imports?jQuery=jquery!bootstrap-sass'
 
