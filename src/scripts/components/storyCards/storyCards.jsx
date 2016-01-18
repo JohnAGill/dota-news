@@ -1,7 +1,7 @@
 import React, {Component} from 'react' // eslint-disable-line no-unused-vars
 import _ from 'lodash'
 
-export default class StoryCard extends Component {
+export default class StoryCards extends Component {
 
   render() {
     return(
