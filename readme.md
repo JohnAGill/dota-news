@@ -1,4 +1,4 @@
-#Dota News []()
+#Dota News [![Circle CI](https://circleci.com/gh/JohnAGill/dota-news.svg?style=svg)](https://circleci.com/gh/JohnAGill/dota-news)
 
 
 ## Commands
