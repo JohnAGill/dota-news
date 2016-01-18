@@ -1,10 +1,10 @@
 
 import { combineReducers } from 'redux'
 import { routeReducer as router } from 'redux-simple-router'
-import users from './reducers/users'
+import stories from './reducers/stories'
 
 const rootReducer = combineReducers({
-  users,
+  stories,
   router
 })
 
