@@ -1,6 +1,7 @@
 var path = require('path');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var Clean = require('clean-webpack-plugin');
+var webpack = require('webpack');
 
 module.exports = {
   entry: [
@@ -29,6 +30,11 @@ module.exports = {
     extensions: ['', '.js', '.jsx', '.json']
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+          'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+       }
+    }),
     new CopyWebpackPlugin([
         // Directory  examples
         { from: 'src/html', to: '.' },

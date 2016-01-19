@@ -1,6 +1,7 @@
 import Firebase from 'firebase'
+import config from '../../config/index.js'
 
-const storiesRef = new Firebase('https://e-sports-news-dev.firebaseio.com/dota/stories')
+const storiesRef = new Firebase(config.default.firebaseEndpoint)
 
 export default {
   loadStories() {
