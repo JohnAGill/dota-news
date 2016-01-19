@@ -1,6 +1,7 @@
 var path = require('path');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var Clean = require('clean-webpack-plugin');
+var webpack = require('webpack');
 
 module.exports = {
   entry: [
