@@ -1,3 +1,3 @@
 export default {
-  firebaseEndpoint: 'https://esports-news.firebaseio.com'
+  firebaseEndpoint: 'https://esports-news.firebaseio.com/dota/stories'
 }
