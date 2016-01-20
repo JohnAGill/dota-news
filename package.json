@@ -74,7 +74,8 @@
     "lint": "npm run lint_html && npm run lint_sass && npm run lint_js",
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
-    "deploy": "npm run build && firebase deploy"
+    "deployDev": "NODE_ENV=development npm run build && firebase deploy",
+    "deployProduction": "NODE_ENV=production npm run build && firebase deploy"
   },
   "author": "",
   "license": "ISC"
