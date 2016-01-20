@@ -1,7 +1,7 @@
 import Firebase from 'firebase'
 import config from '../../config/index.js'
 
-const storiesRef = new Firebase(config.default.firebaseEndpoint)
+const storiesRef = new Firebase(config.firebaseEndpoint)
 
 export default {
   loadStories() {
