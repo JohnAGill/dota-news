@@ -13,8 +13,7 @@ const getEnvironment = () => {
     default:
       return(require('./development'))
   }
-  throw `$Could not find environment for:  + environment`
 }
 
-export const config = _.merge(defaults, getEnvironment())
+export const config = _.merge(defaults, getEnvironment().default)
 export default config
