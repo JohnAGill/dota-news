@@ -1,8 +1,9 @@
 
-.date-position {
+.story-date {
   position: absolute;
   bottom:0;
   right:10;
+  font-style: italic;
 }
 
 .spinner {
@@ -28,9 +29,6 @@
   }
   ul {
     list-style-type: none;
-  }
-  p{
-    font-style: italic;
   }
 }
 
