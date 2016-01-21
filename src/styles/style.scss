@@ -1,4 +1,11 @@
 
+.story-date {
+  position: absolute;
+  bottom:0;
+  right:10;
+  font-style: italic;
+}
+
 .spinner {
   @extend .fa;
   @extend .fa-spinner;
@@ -7,17 +14,30 @@
 }
 
 .card {
-  padding:1.5rem;
-  box-shadow:0 1px 2px #AAA;
-  background:white;
-  margin:0 1rem 1rem;
-  border-radius:3px;
+  padding: 1.5rem;
+  box-shadow: 0 3px 5px #AAA;
+  background: white;
+  margin: 0 1rem 1rem;
+  border-radius: 6px;
   flex: 300px;
   margin-top: 20px;
-  max-width: 350px;
+  max-width: 360px;
+  position: relative;
+  a {
+    text-decoration: underline;
+    color: #5F82FF;
+  }
+  ul {
+    list-style-type: none;
+  }
 }
 
 .container{
   display: flex;
   flex-wrap: wrap;
+}
+
+.nav-margin-bottom {
+  margin-bottom: 100px;
+  border-style: solid;
 }
