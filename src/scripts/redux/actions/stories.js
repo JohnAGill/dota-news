@@ -11,9 +11,11 @@ export default {
       dispatch({type: 'LOAD_STORIES_REQUEST'})
       storiesRef.on('value', (snapshot) => {
         const stories = (snapshot.val() ? snapshot.val() : [])
-        const orderedStories = _.sortBy(stories, (story) => (story.date)).reverse()
-        const convertDate = _.map(orderedStories, (story) => { return({...story, convertedDate: moment(story.date).calendar()}) })
-        dispatch({type: 'LOAD_STORIES_SUCCESS', payload: convertDate})
+        const orderedStories = _.chain(stories)
+          .sortBy((story) => (story.date)).reverse()
+          .map((story) => { return({...story, humanReadableDate: moment(story.date).calendar()}) })
+          .value()
+        dispatch({type: 'LOAD_STORIES_SUCCESS', payload: orderedStories})
       }, (errorObject) => {
         dispatch({type: 'LOAD_STORIES_ERROR', payload: errorObject.code})
       })

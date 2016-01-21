@@ -1,7 +1,3 @@
-* {
-  font-family: 'Open Sans', arial, sans-serif;
-  color: #474645;
-}
 
 .date-position {
   position: absolute;
@@ -17,7 +13,6 @@
 }
 
 .card {
-  font-style: italic;
   padding: 1.5rem;
   box-shadow: 0 3px 5px #AAA;
   background: white;
@@ -29,10 +24,13 @@
   position: relative;
   a {
     text-decoration: underline;
-    color: #5F82FF
+    color: #5F82FF;
   }
   ul {
     list-style-type: none;
+  }
+  p{
+    font-style: italic;
   }
 }
 
