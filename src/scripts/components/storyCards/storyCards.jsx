@@ -14,7 +14,7 @@ export default class StoryCards extends Component {
                 {story.links[0] ? <li><a href={story.links[0].link}>{story.links[0].source}</a></li> : null}
                 {story.links[1] ? <li><a href={story.links[1].link}>{story.links[1].source}</a></li> : null}
                 {story.links[2] ? <li><a href={story.links[2].link}>{story.links[2].source}</a></li> : null}
-                <p>{story.date}</p>
+                <p className='date-position'>{story.convertedDate}</p>
               </ul>
             </div>
           )
