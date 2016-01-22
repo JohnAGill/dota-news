@@ -1,5 +1,3 @@
-import './googleAnalytics.js'
-
 // This puts a <style> tag in <head> of page with transpiled css.
 import '../styles/main.scss'
 
