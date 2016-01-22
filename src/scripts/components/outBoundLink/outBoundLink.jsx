@@ -11,7 +11,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <p onClick={() => this.redirect(this.props.link)}>{this.props.source}</p>
+      <a onClick={() => this.redirect(this.props.link)}>{this.props.source}</a>
     )
   }
 }
