@@ -3,11 +3,16 @@ import ga from 'react-ga'
 
 export default class OutBoundLink extends Component {
 
-  redirect(link) { ga.outboundLink({ label: link }, () => location.assign(link)) }
+  redirect(link, event) {
+    event.preventDefault()
+    ga.outboundLink({ label: link }, () => {
+      location.assign(link) // eslint-disable-line no-undef
+    })
+  }
 
   render() {
     return (
-      <a onClick={() => this.redirect(this.props.link)}>{this.props.source}</a>
+      <a href={this.props.link} onClick={(e) => this.redirect(this.props.link, e)}>{this.props.source}</a>
     )
   }
 }
