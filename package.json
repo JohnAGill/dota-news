@@ -65,11 +65,11 @@
   },
   "scripts": {
     "build": "webpack",
-    "ci": "npm run lint && npm run build",
+    "ci": "npm run lint",
     "dev": "webpack-dev-server --devtool sourcemaps --progress --colors --hot --inline --history-api-fallback --content-base build",
     "fix_js": "eslint --fix src/scripts",
     "lint_html": "htmllint build/**/*.html",
-    "lint_js": "eslint src/scripts",
+    "lint_js": "eslint src/scripts --ext=js --ext=jsx",
     "lint_sass": "sass-lint -c sass-lint.yml -v",
     "lint": "npm run lint_html && npm run lint_sass && npm run lint_js",
     "test": "mocha --compilers js:babel-core/register --recursive",
