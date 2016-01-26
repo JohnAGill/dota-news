@@ -17,5 +17,5 @@ const getEnvironment = () => {
   }
 }
 
-export const config = _.merge(defaults, getEnvironment())
+const config = _.merge(defaults, getEnvironment())
 export default config
