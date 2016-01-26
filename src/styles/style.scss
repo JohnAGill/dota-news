@@ -1,9 +1,17 @@
 
+.app-border {
+  margin-bottom: 25px;
+}
+
 .story-date {
   position: absolute;
   bottom:0;
   right:10;
   font-style: italic;
+}
+
+.links-container {
+  margin-bottom: 30px;
 }
 
 .spinner {
@@ -14,21 +22,30 @@
 }
 
 .card {
-  padding: 1.5rem;
+  padding: 2rem 3rem 2rem 3rem;
   box-shadow: 0 3px 5px #AAA;
   background: white;
-  margin: 0 1rem 1rem;
+  margin: 0 1rem 0 1rem;
   border-radius: 6px;
   flex: 300px;
   margin-top: 20px;
   max-width: 360px;
+  max-height: 400px;
+  min-height: 200px;
   position: relative;
   a {
     text-decoration: underline;
     color: #5F82FF;
   }
-  ul {
+  h4 {
+    margin-bottom: 20px;
+  }
+  li {
+    margin-top: 3px;
     list-style-type: none;
+  }
+  p {
+    margin: 10px;
   }
 }
 

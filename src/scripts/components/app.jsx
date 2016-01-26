@@ -7,7 +7,7 @@ export default class App extends Component {
 
   render() {
     return(
-      <div className='border'>
+      <div className='app-border'>
         <Navbar />
         {this.props.children}
       </div>
