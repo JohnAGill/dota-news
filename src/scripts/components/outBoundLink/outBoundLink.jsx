@@ -12,7 +12,7 @@ export default class OutBoundLink extends Component {
 
   render() {
     return (
-      <a href={this.props.link.link} onClick={(e) => this.redirect(this.props.link.link, e)}>{this.props.link.source}</a>
+      <a href={this.props.link} onClick={(e) => this.redirect(this.props.link, e)}>{this.props.source}</a>
     )
   }
 }
